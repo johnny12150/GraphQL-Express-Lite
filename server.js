@@ -2,20 +2,36 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var {buildSchema} = require('graphql');
 
-// Construct a schema, using GraphQL schema language
+// schema
 var schema = buildSchema(`
+  type data {
+    text: String,
+    id: Int
+  }
+  
   type Query {
-    hello: String
+    hello(id: Int!): data
   }
 `);
 
-// The root provides a resolver function for each API endpoint
+// 建立一筆假資料
+let fake_data = [
+    {
+        text: "world!!",
+        id: 0
+    },
+    {
+        text: "not found",
+        id: 1
+    }
+];
+
+// resolver
 var root = {
     hello: (source, args) => {
+        // source 是 client端帶入的參數
         console.log(source);
-        console.log('---');
-        console.log(args);
-        return 'Hello world!';
+        return fake_data[source.id]
     },
 };
 
