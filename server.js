@@ -59,7 +59,12 @@ var root = {
     },
     stack: () => {
         // fetch Rancher的stack API
-        return fetch('http://192.168.1.43/v2-beta/projects/1a5/stacks/1st47').then(res => res.json())
+        return fetch('http://192.168.1.43/v2-beta/projects/1a5/stacks/1st47', {method: 'GET',
+            headers: {
+                'Authorization': 'Basic RTA1QzJGQTVDN0Y5MUE2OTcwMTI6dEN5ZTNvM3BZNHd6ak1XV1ZES1RZU0dFRnR0ejJkVXJEbXhjWFBHVA==',
+                'Accept': 'application/json'
+            }
+        }).then(res => res.json())
     }
 };
 
