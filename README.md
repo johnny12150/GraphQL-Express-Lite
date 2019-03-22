@@ -2,7 +2,7 @@
 ### 細節
 使用express來建置簡單的graphql應用
 
-(並沒有使用express-generator來產生完整的專案架構)
+(並沒有使用express-generator來產生完整的MVC專案架構)
 
 > https://graphql.org/graphql-js/running-an-express-graphql-server/
 
