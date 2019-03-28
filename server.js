@@ -40,7 +40,8 @@ var schema = buildSchema(`
     "取Rancher 1.6 API stack的基礎資料"
     stack(id: String!): stack,
     "顯示指定project/ environment下有哪些stack"
-    project: project
+    project: project,
+    all_stacks: [stack]
   }
 `);
 
@@ -86,6 +87,16 @@ var root = {
                 'Accept': 'application/json'
             }
         }).then(res => res.json())
+    },
+    all_stacks: () => {
+        return fetch('http://192.168.1.43/v2-beta/projects/1a5/stacks', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Basic RTA1QzJGQTVDN0Y5MUE2OTcwMTI6dEN5ZTNvM3BZNHd6ak1XV1ZES1RZU0dFRnR0ejJkVXJEbXhjWFBHVA==',
+                'Accept': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(result => result.data)
     }
 };
 
